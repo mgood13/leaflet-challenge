@@ -16,6 +16,25 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 
+var legend = L.control({ position: "bottomright" });
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Color Legend</h4>";
+  div.innerHTML += "<h5>Depth(km)</h5>"
+  div.innerHTML += '<i style="background: #1de72f"></i><span> < 10</span><br>';
+  div.innerHTML += '<i style="background: #00c576"></i><span>10-20</span><br>';
+  div.innerHTML += '<i style="background: #009f94"></i><span>20-35</span><br>';
+  div.innerHTML += '<i style="background: #007792"></i><span>35-60</span><br>';
+  div.innerHTML += '<i style="background: #005c7f"></i><span>60-85</span><br>';
+  div.innerHTML += '<i style="background: #0a3750"></i><span>85+</span><br>';
+  return div;
+};
+
+legend.addTo(myMap);
+
+
+
 d3.json(url,function(response) {
     console.log(response)
     console.log(response.features.length)
@@ -62,6 +81,8 @@ d3.json(url,function(response) {
         radius: magnitude
         }).addTo(myMap);
     };
+
+
 
 
 });
