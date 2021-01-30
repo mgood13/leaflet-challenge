@@ -67,7 +67,9 @@ d3.json(url,function(response) {
         }
 
 
-
+        var unixTime = response.features[i].properties.time;
+        var realTime = new Date(unixTime);
+        var formattedTime = realTime.toDateString() +" "+ realTime.getHours() + ":" + realTime.getMinutes();
 
 
         var magnitude = response.features[i].properties.mag * 30000;
@@ -79,7 +81,14 @@ d3.json(url,function(response) {
         fillColor: fillerColor,
         fillOpacity: 0.5,
         radius: magnitude
-        }).addTo(myMap);
+        }).bindPopup(
+        `<strong><h4>Magnitude:</strong> ${response.features[i].properties.mag} </h4> <hr>
+        <h3>Location: </h3> ${response.features[i].properties.place}<br>
+        <h3>Time: </h3>${formattedTime}
+
+        `
+
+        ).addTo(myMap);
     };
 
 
