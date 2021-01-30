@@ -15,3 +15,20 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+
+d3.json(url,function(response) {
+    console.log(response)
+    console.log(response.features.length)
+
+    for (var i = 0; i<response.features.length; i++){
+        var quake = response.features[i].geometry
+        var circle = L.circle([quake.coordinates[1],quake.coordinates[0]], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+        }).addTo(myMap);
+    };
+
+
+});
