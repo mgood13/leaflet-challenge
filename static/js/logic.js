@@ -21,12 +21,45 @@ d3.json(url,function(response) {
     console.log(response.features.length)
 
     for (var i = 0; i<response.features.length; i++){
-        var quake = response.features[i].geometry
+
+        var quake = response.features[i].geometry;
+
+        if (quake.coordinates[2] < 10){
+            var fillerColor = "#1de72f";
+        }
+        else if(quake.coordinates[2] >= 10 && quake.coordinates[2] < 20){
+            var fillerColor = "#00c576";
+
+        }
+        else if (quake.coordinates[2] >= 20 && quake.coordinates[2] < 35){
+            var fillerColor = "#009f94";
+
+        }
+        else if (quake.coordinates[2] >= 35 && quake.coordinates[2] < 60){
+            var fillerColor = "#007792";
+
+        }
+        else if (quake.coordinates[2] >= 60 && quake.coordinates[2] < 85){
+            var fillerColor = "#005c7f";
+
+        }
+        else{
+            var fillerColor = "#0a3750";
+        }
+
+
+
+
+
+        var magnitude = response.features[i].properties.mag * 30000;
+
         var circle = L.circle([quake.coordinates[1],quake.coordinates[0]], {
-        color: 'red',
-        fillColor: '#f03',
+        stroke: true,
+        color: 'black',
+        weight: 1,
+        fillColor: fillerColor,
         fillOpacity: 0.5,
-        radius: 500
+        radius: magnitude
         }).addTo(myMap);
     };
 
