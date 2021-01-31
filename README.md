@@ -1,1 +1,5 @@
 # leaflet-challenge
+
+# USGS Earthquake Data
+
+This repository displays data from the USGS about earthquakes worldwide. Specifically, this renders data from all earthquakes in the last 7 days. Personally, the sheer number of datapoints that appeared in this dataset was the most surprising to me. This dataset takes GeoJSON data and places circles on a Leaflet JS generated map of the world. The size of each circle is related to the magnitude of the earthquake and the color is relative to the depth. The darker the color of the circle the deeper the earthquake. This map also displays the borders of tectonic plates and enables visualization of the commonly held belief that earthquakes occur most commonly along faultlines between the different tectonic plates. Most notably in the US we see this in California and, surprisingly even more prevalently, in Alaska.
